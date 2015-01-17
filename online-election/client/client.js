@@ -1,18 +1,11 @@
 
 // counter starts at 0
 if (Meteor.isClient) {
-	Session.setDefault("counter", 0);
 
-	Template.hello.helpers({
-		counter: function () {
-		  return Session.get("counter");
-		}
-	});
-
-	Template.hello.events({
-		'click button': function () {
-		  // increment the counter when button is clicked
-		  Session.set("counter", Session.get("counter") + 1);
-		}
+	Candidates = new Meteor.Collection('candidates');
+	// Candidates.insert( { first_name: "shaunak", last_name: "pagnis",email: "shau@amu.com" } );
+	all_candidates = Candidates.find();
+	Template.allCandidates.helpers({
+		candidates: all_candidates
 	});
 }
