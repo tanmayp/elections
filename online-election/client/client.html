@@ -1,14 +1,86 @@
+
 <head>
   <title>online-election</title>
 </head>
 
 <body>
+  {{> signupForm }}<br/>
   <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+<!-- 	<form id="login-form" action="action">
+		<div>
+			<input type="email" id="login-email" />
+			<input type="password" id="login-password" />
+			<input type="submit" id="login-button" value="Sign in" />
+		</div>
+	</form> 
+ -->
+ 	{{#if currentUser}}
+ 		{{> hello}}
+	{{/if}}
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="signupForm">
+  <form id="signup-form">
+    <h2>Sign Up</h2>
+
+    <div class="form-group">
+	    <label for="signup-username">Username</label>
+	    <input type="text" id="signup-username" placeholder="Username" />
+    </div>
+
+    <div class="form-group">
+	    <label for="signup-email">Email</label>
+	    <input type="text" id="signup-email" placeholder="Email" />
+    </div>
+
+    <div class="form-group">
+	    <label for="signup-password">Password</label>
+	    <input type="password" id="signup-password" placeholder="Password" />
+    </div>
+
+    <div class="form-group">
+	    <label for="signup-name">Full Name</label>
+	    <input type="text" id="signup-name" placeholder="Full Name" />
+    </div>
+
+    <div class="form-group">
+	    <label for="signup-type">Type</label>
+	    <select class="role">
+	    	<option value='admin' selected="selected">Admin</option>
+	    	<option value='candidate'>Candidate</option>
+	    	<option value='voter'>Voter</option>
+	    </select>
+    </div>
+
+    <button class="btn btn-default" type="submit">Sign Up</button>
+  </form>
+</template>
+
+<template name="loginForm">
+  <form id="login-form">
+    <h2>Log In</h2>
+
+    <div class="form-group">
+	    <label for="login-username">Username</label>
+	    <input type="text" id="login-username" placeholder="Username" />
+    </div>
+
+    <div class="form-group">
+	    <label for="login-password">Password</label>
+	    <input type="password" id="login-password" placeholder="Password" />
+    </div>
+
+    <button class="btn btn-default" type="submit">Log In</button>
+  </form>
+</template>
+
+<template name="logoutForm">
+  <form id="logout-form">
+    <button type="submit">Log Out</button>
+  </form>
 </template>

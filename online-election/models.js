@@ -1,7 +1,7 @@
 /**
 * Models
 */
-//Users = new Meteor.Collection('users');
+// Users = new Mongo.Collection('users');
 
 Elections = new Meteor.Collection('elections'); 
 
