@@ -1,11 +1,19 @@
+Router.route('/', function(){
+	this.render('loginForm');
+});
+Router.route('/sign_up', function(){
+	this.render('signupForm');
+});
+Router.route('/home', function(){
+	this.render('Home');
+});
 
 // counter starts at 0
 if (Meteor.isClient) {
-	Session.setDefault("counter", 0);
-
-	Template.hello.helpers({
-		counter: function () {
-		  return Session.get("counter");
+	
+	Template.loginForm.helpers({
+		redirect_to_home: function () {
+		  Router.go('/home');
 		}
 	});
 
@@ -28,38 +36,20 @@ if (Meteor.isClient) {
 			}, function (err) {
 				if (err) {
 					console.log("ERROR");
+					alert('Please fill all fields');
 				// Inform the user that account creation failed
 				} else {
 					console.log("Success");
+					Router.go('/home');
 				// Success. Account has been created and the user
 				// has logged in successfully. 
 				}
 			});
 		}
-
 	});
 
-	// Template.login.events({
-	// 'submit #login-form' : function(e, t){
-	//       e.preventDefault();
-	//       // retrieve the input field values
-	//       var email = t.find('#login-email').value
-	//         , password = t.find('#login-password').value;
-
-	//         // Trim and validate your fields here.... 
-
-	//         // If validation passes, supply the appropriate fields to the
-	//         // Meteor.loginWithPassword() function.
-	//         Meteor.loginWithPassword(email, password, function(err){
-	//         // if (err)
-	//           // The user might not have been found, or their passwword
-	//           // could be incorrect. Inform the user that their
-	//           // login attempt has failed. 
-	//     		console.log("ERROR");
-	//         // else
-	//           // The user has been logged in.
-	//       	});
-	//         return false; 
-	//       }
-	//   });
+	Template.loginForm.events({
+		'click .sign_up' : function(e,t){
+		}
+	});
 }

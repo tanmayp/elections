@@ -4,25 +4,14 @@
 </head>
 
 <body>
-  {{> signupForm }}<br/>
+  <!-- {{> signupForm }}<br/> -->
   <h1>Welcome to Meteor!</h1>
-<!-- 	<form id="login-form" action="action">
-		<div>
-			<input type="email" id="login-email" />
-			<input type="password" id="login-password" />
-			<input type="submit" id="login-button" value="Sign in" />
-		</div>
-	</form> 
- -->
  	{{#if currentUser}}
  		{{> hello}}
 	{{/if}}
-</body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
+
+</body>
 
 <template name="signupForm">
   <form id="signup-form">
@@ -62,21 +51,27 @@
 </template>
 
 <template name="loginForm">
-  <form id="login-form">
+  {{#if currentUser}}
+    {{redirect_to_home}}
+  {{else}}
+    <form id="login-form">
     <h2>Log In</h2>
 
     <div class="form-group">
-	    <label for="login-username">Username</label>
-	    <input type="text" id="login-username" placeholder="Username" />
+      <label for="login-username">Username</label>
+      <input type="text" id="login-username" placeholder="Username" />
     </div>
 
     <div class="form-group">
-	    <label for="login-password">Password</label>
-	    <input type="password" id="login-password" placeholder="Password" />
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" placeholder="Password" />
     </div>
 
     <button class="btn btn-default" type="submit">Log In</button>
+    <a class="btn btn-default" href="{{pathFor 'sign_up'}}">Signup</a>
   </form>
+  {{/if}}
+  
 </template>
 
 <template name="logoutForm">
