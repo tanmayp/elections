@@ -32,7 +32,7 @@
 
     <div class="form-group">
 	    <label for="signup-type">Type</label>
-	    <select class="role">
+	    <select class="role" id="signup-type">
 	    	<option value='admin' selected="selected">Admin</option>
 	    	<option value='candidate'>Candidate</option>
 	    	<option value='voter'>Voter</option>
@@ -71,4 +71,8 @@
   <form id="logout-form">
     <button type="submit">Log Out</button>
   </form>
+</template>
+
+<template name="Home">
+  {{route_by_type currentUser}}
 </template>

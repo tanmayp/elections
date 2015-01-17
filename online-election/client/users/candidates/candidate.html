@@ -3,30 +3,27 @@
 <body>
 </body>
 
-<template name="Home">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-<!-- <h1>Candidates</h1>
-  	{{> allCandidates}}
-
-<template name="allCandidates">
+<template name="candidate">
+  <h2>Your Profile</h2>
   <div class="container col-md-12 col-md-offset-0">
     <table class="table table-bordered table-hover table-stripped">
 		  <tr>
-		    <th>First Name</th>
-		    <th>Last Name</th>
+		    <th>Name</th>
+		    <th>UserName</th>
 		    <th>Email</th>
+		    type
+		    education degree
+		    political experience
+		    criminal cases
+		    gender
 		  </tr>
-		  
-		  {{#each candidates}}
-		  	<tr>
-        	<td>{{> firstName}}</td>
-        	<td>{{> lastName}}</td>
-        	<td>{{> email}}</td>
+		<tr>
+        	<td>{{ currentUser.profile.name }}</td>
+        	<td>{{ currentUser.username }}</td>
+        	{{#each currentUser.emails}}
+        		<td>{{address}}</td>
+        	{{/each}}        	
         </tr>
-      {{/each}}
-			
 		</table>
   </div>
-</template> -->
+</template>

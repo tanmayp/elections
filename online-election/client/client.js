@@ -7,6 +7,15 @@ Router.route('/sign_up', function(){
 Router.route('/home', function(){
 	this.render('Home');
 });
+Router.route('/candidate', function(){
+	this.render('candidate');
+});
+Router.route('/admin', function(){
+	this.render('admin');
+});
+Router.route('/voter', function(){
+	this.render('voter');
+});
 
 // counter starts at 0
 if (Meteor.isClient) {
@@ -16,11 +25,15 @@ if (Meteor.isClient) {
 		  Router.go('/home');
 		}
 	});
-
-	Template.hello.events({
-		'click button': function () {
-		  // increment the counter when button is clicked
-		  Session.set("counter", Session.get("counter") + 1);
+	Template.Home.helpers({
+		route_by_type: function(currentUser){
+			if(currentUser.profile.type=="candidate"){
+				Router.go('/candidate');
+			}else if(currentUser.profile.type=="admin"){
+				Router.go('/admin');
+			}else if(currentUser.profile.type=="voter"){
+				Router.go('/voter');
+			}
 		}
 	});
 
@@ -31,8 +44,8 @@ if (Meteor.isClient) {
 				email: $('#signup-email').val(),
 				password : $('#signup-password').val(),
 				username : $('#signup-username').val(),
-				name: $('#signup-name').val(),
-				type: $('#signup-type').val()
+				profile: {name: $('#signup-name').val(),
+				type: $('#signup-type').val()}
 			}, function (err) {
 				if (err) {
 					console.log("ERROR");
